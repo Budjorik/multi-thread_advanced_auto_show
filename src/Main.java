@@ -13,18 +13,14 @@ public class Main {
     }
 
     public static void startProduce(Autoshow autoshow) {
-        String nameOfCustomer = "Производитель";
-        Thread producerOfAutoshow = new ProducerOfAutoshow(autoshow);
-        producerOfAutoshow.setName(nameOfCustomer);
-        producerOfAutoshow.start();
+        String nameOfProducer = "Производитель";
+        new Thread(null, new ProducerOfAutoshow(autoshow), nameOfProducer).start();
     }
 
     public static void startSales(Autoshow autoshow) {
         for (int i = 1 ; i <= autoshow.getCustomers().size() ; i++) {
             String nameOfCustomer = "Покупатель " + i;
-            Thread customerOfAutoshow = new CustomerOfAutoshow(autoshow);
-            customerOfAutoshow.setName(nameOfCustomer);
-            customerOfAutoshow.start();
+            new Thread(null, new CustomerOfAutoshow(autoshow), nameOfCustomer).start();
         }
     }
 
